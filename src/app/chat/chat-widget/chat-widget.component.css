@@ -20,6 +20,21 @@
   float: left;
   margin-right: 10px;
 }
+.capdiv {
+  height: 37px;
+  margin: 2em auto;
+  border-radius: 15%;
+  border: 2px solid #1143e6;
+  font-size: 12px;
+  text-align: center;
+  align-items: center;
+  padding-top: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+input {
+  border: none;
+}
 .chat-button {
   z-index: 1;
   width: 60px;

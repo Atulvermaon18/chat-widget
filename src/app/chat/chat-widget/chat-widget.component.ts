@@ -12,8 +12,8 @@ import { fadeIn, fadeInOut } from '../animations'
 const randomMessages = {
   email:
     '<input type="email" placeholder="Please enter you Email" style="width:200px;">',
-  phone:
-    '<input type="text" placeholder="Please enter you Phone Number" style="width:200px;">',
+  tel: '<input type="text" placeholder="Please enter you Phone Number" style="width:200px;">',
+  option: ['MORNING', 'EVENING'],
 }
 
 const rand = (max) => Math.floor(Math.random() * max)
@@ -82,6 +82,7 @@ export class ChatWidgetComponent implements OnInit {
   }
 
   public initMessage(input) {
+    debugger
     this.addMessage(this.operator, randomMessages[input], 'received', input)
   }
 
@@ -105,7 +106,6 @@ export class ChatWidgetComponent implements OnInit {
     if (message.trim() === '') {
       return
     }
-    debugger
     this.addMessage(this.client, message, 'sent', 'plain-text')
     setTimeout(() => {
       this.addMessage(
@@ -114,13 +114,14 @@ export class ChatWidgetComponent implements OnInit {
         'received',
         'plain-text',
       )
+      this.initMessage('email')
+      this.currentInput = 'email'
     }, 1500)
-    setTimeout(() => this.initMessage('email'), 2000)
   }
-
-  onKeyDownEvent(event: any) {
-    console.log(event.target.value)
-    switch (event.target.type) {
+  currentInput: any = 'plain-text'
+  onKeyDownEvent(type: any) {
+    this.currentInput = type
+    switch (type) {
       case 'email':
         setTimeout(() => {
           this.addMessage(
@@ -130,18 +131,30 @@ export class ChatWidgetComponent implements OnInit {
             'plain-text',
           )
         }, 1500)
-        setTimeout(() => this.initMessage('phone'), 2000)
+        setTimeout(() => this.initMessage('tel'), 2000)
         break
-      case 'phone':
+      case 'tel':
         setTimeout(() => {
           this.addMessage(
             this.operator,
-            'Thank you for your time, we will get back to you with query',
+            'Thank you for your time, When would you like us to call',
             'received',
             'plain-text',
           )
         }, 1500)
-        setTimeout(() => this.initMessage('phone'), 2000)
+        setTimeout(() => this.initMessage('option'), 2000)
+        break
+
+      case 'option':
+        setTimeout(() => {
+          this.addMessage(
+            this.operator,
+            'Great, we will get back to you on same',
+            'received',
+            'plain-text',
+          )
+        }, 1500)
+        this.currentInput = 'plain-text'
         break
     }
   }

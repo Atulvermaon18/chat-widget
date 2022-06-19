@@ -32,26 +32,32 @@
               [innerHtml]="message.text"
               *ngIf="message.input == 'plain-text'"
             ></div>
-            <div class="chat-message-text" *ngIf="message.input == 'text'">
-              <input
-                type="email"
-                placeholder="Please enter your email"
-                (keydown.enter)="onKeyDownEvent($event)"
-              />
-            </div>
             <div class="chat-message-text" *ngIf="message.input == 'email'">
               <input
                 type="email"
                 placeholder="Please enter your email"
-                (keydown.enter)="onKeyDownEvent($event)"
+                (keydown.enter)="onKeyDownEvent($event.target.type)"
               />
             </div>
-            <div class="chat-message-text" *ngIf="message.input == 'phone'">
+            <div class="chat-message-text" *ngIf="message.input == 'tel'">
               <input
                 type="tel"
                 placeholder="Please enter your phone"
-                (keydown.enter)="onKeyDownEvent($event)"
+                (keydown.enter)="onKeyDownEvent($event.target.type)"
               />
+            </div>
+            <div
+              class="chat-message-text"
+              *ngIf="message.input == 'option'"
+              style="display: flex"
+            >
+              <div
+                class="capdiv"
+                *ngFor="let opt of message.text"
+                (click)="onKeyDownEvent('option')"
+              >
+                {{ opt }}
+              </div>
             </div>
           </div>
           <div class="chat-message-date">
@@ -60,7 +66,7 @@
         </div>
       </ng-container>
     </div>
-    <div class="chat-box-footer">
+    <div class="chat-box-footer" *ngIf="currentInput == 'plain-text'">
       <chat-input
         (send)="sendMessage($event)"
         (dismiss)="toggleChat()"
