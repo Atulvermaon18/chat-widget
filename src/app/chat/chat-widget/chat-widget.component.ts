@@ -110,7 +110,7 @@ export class ChatWidgetComponent implements OnInit {
     setTimeout(() => {
       this.addMessage(
         this.operator,
-        'Hi, Please enter your email?',
+        ' Please enter your email?',
         'received',
         'plain-text',
       )
@@ -126,7 +126,7 @@ export class ChatWidgetComponent implements OnInit {
         setTimeout(() => {
           this.addMessage(
             this.operator,
-            'Thank you for your email, Kindly provide your phone',
+            'Kindly provide your phone',
             'received',
             'plain-text',
           )
@@ -137,7 +137,7 @@ export class ChatWidgetComponent implements OnInit {
         setTimeout(() => {
           this.addMessage(
             this.operator,
-            'Thank you for your time, When would you like us to call',
+            'When would you like us to call',
             'received',
             'plain-text',
           )
@@ -149,7 +149,7 @@ export class ChatWidgetComponent implements OnInit {
         setTimeout(() => {
           this.addMessage(
             this.operator,
-            'Great, we will get back to you on same',
+            'Great! we will get back to you on same',
             'received',
             'plain-text',
           )
